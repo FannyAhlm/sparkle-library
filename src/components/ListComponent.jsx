@@ -18,7 +18,7 @@ const ListComponent = ({formScreen,startCard}) =>{
     const [sorteringNyckel,setSorteringNyckel] = useState('');
 
     let h2 = '', titleText = '', creatorText = '', search = [],
-     usedBeforeText = '' , addButtonText = '' , list =[];
+    usedBeforeText = '' , addButtonText = '' , list =[];
     let colorClass = '';
     
 
@@ -26,11 +26,11 @@ const ListComponent = ({formScreen,startCard}) =>{
         case 'music':
             h2 = 'Music';
             titleText = 'Song Title';
-             creatorText = 'Artist';
-             usedBeforeText = 'Listened to';
-             addButtonText = 'Add music';
-             colorClass = 'red';
-             list = musicList; 
+            creatorText = 'Artist';
+            usedBeforeText = 'Listened to';
+            addButtonText = 'Add music';
+            colorClass = 'red';
+            list = musicList; 
         break;
         case 'books':
             h2 = 'Books';
@@ -38,8 +38,8 @@ const ListComponent = ({formScreen,startCard}) =>{
             creatorText = 'Author';
             usedBeforeText = 'Read before';
             addButtonText = 'Add book';
-             colorClass = 'yellow';
-             list = booksList; 
+            colorClass = 'yellow';
+            list = booksList; 
         break;
         case 'movies':
             h2 = 'Movies';
@@ -47,8 +47,8 @@ const ListComponent = ({formScreen,startCard}) =>{
             creatorText = 'Director';
             usedBeforeText = 'Seen';
             addButtonText = 'Add movie';
-             colorClass = 'green';
-             list = moviesList; 
+            colorClass = 'green';
+            list = moviesList; 
         break;
         default:
             h2 = 'Movies';
@@ -64,21 +64,20 @@ const ListComponent = ({formScreen,startCard}) =>{
     
     
 
-     if (mySearch !==''){
-         
-         search =[...list].filter(item=>
+    if (mySearch !==''){
+        search =[...list].filter(item=>
             (item.title).toLowerCase().includes(mySearch.toLowerCase())||
             (item.creator).toLowerCase().includes(mySearch.toLowerCase())||
             (item.comment).toLowerCase().includes(mySearch.toLowerCase()) ||
             (item.usedBefore).toLowerCase().includes(mySearch.toLowerCase()) ||
             (item.rating).includes(mySearch.toLowerCase())
         );
-     }else {
-         search = [...list];
-     }
+    }else {
+        search = [...list];
+    }
 
-     
-     if(sorteringNyckel ==='title'){
+    
+    if(sorteringNyckel ==='title'){
 
         let sorterade = search.sort((a,b)=>{
             if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
@@ -116,7 +115,7 @@ const ListComponent = ({formScreen,startCard}) =>{
     
     
     if(list.length === 0){
-       list= <h1>No item in the list...</h1>
+        list= <h1>No item in the list...</h1>
     }else{
         list = search.map((item, index)=><ListCard key={item.title+index} title={item.title} creator={item.creator} usedBefore={item.usedBefore} rating={item.rating} comment={item.comment} />)
     }
@@ -128,16 +127,11 @@ const ListComponent = ({formScreen,startCard}) =>{
         dispatch(screenActions.formScreen());
     }
     
- 
+
     return(
-    
-           
         
-            <main className={`text-${colorClass} background-${colorClass}`}>
-               
-                <h2>
-                   {h2}
-                </h2>
+            <main className={`text-${colorClass} background-${colorClass}`}>               
+                <h2>{h2}</h2>
                 <div className='listcomponent-menu'>
                     <div className={`sort background-${colorClass}`}>
                         <h2 className={`drop-div text-${colorClass} `}>Sort</h2>
@@ -162,16 +156,11 @@ const ListComponent = ({formScreen,startCard}) =>{
 
                     {list}
             
-
-                 </div>
+                </div>
                 <div className='add-button'>
-                   <button className={`addButton-${colorClass}`} onClick={handleFormScreen}>{addButtonText}</button>
-
+                    <button className={`addButton-${colorClass}`} onClick={handleFormScreen}>{addButtonText}</button>
                 </div>
             </main>
-       
-        
-        
     );
 }
 export default ListComponent;

@@ -13,6 +13,7 @@ header {
 img.big{
   width: 20rem;
   height: auto;
+  margin:0 auto;
  
 } 
 img.go-back{
